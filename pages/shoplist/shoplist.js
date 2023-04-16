@@ -13,6 +13,9 @@ Page({
     total:0
   },
   getShopInfo(){
+    wx.showLoading({
+      title: '数据加载中',
+    })
     wx.request({
       url: 'https://www.escook.cn/categoires/${this.data.query.id}/shops',
       method:'get',
@@ -27,6 +30,9 @@ Page({
           total:res.header["X-Total-Count"] - 0
         }),
         console.log(this.data.shopList)
+      },
+      complete:()=>{
+        wx.hideLoading()
       }
     })
   },
