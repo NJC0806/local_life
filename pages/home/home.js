@@ -6,7 +6,9 @@ Page({
    */
   data: {
     //存放轮播图数据
-    swipperList:[]
+    swipperList:[],
+    //存放九宫格数据
+    gridList:[]
   },
   //获取轮播图的相关图片地址
   getSwipperList(){
@@ -18,7 +20,17 @@ Page({
             //对应的轮播图数据在res.data中
             swipperList: res.data
           })
-          console.log(this.data.swipperList)
+      }
+    })
+  },
+  getGridList(){
+    wx.request({
+      url: 'https://www.escook.cn/categories',
+      method:"GET",
+      success:(res) => {
+        this.setData({
+          gridList:res.data
+        })
       }
     })
   },
@@ -26,8 +38,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    //页面加载时就因该发起请求
-    this.getSwipperList()
+    //页面加载时获取轮播图网址
+    this.getSwipperList(),
+    //页面加载时获取九宫格网址
+    this.getGridList()
   },
 
   /**

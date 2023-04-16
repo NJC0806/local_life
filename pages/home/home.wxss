@@ -2,3 +2,29 @@
 swiper{
     height: 350rpx;
 }
+.grid-list{
+  /*弹性布局*/
+  display: flex;
+  /*运行换行*/
+  flex-wrap: wrap;
+}
+.grid-item{
+  width: 33.33%;
+  height: 200rpx;
+  display: flex;
+  /*图像和文本纵向布局*/
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1rpx solid #efefef;
+  border-bottom: 1rpx solid #efefef;
+  box-sizing: border-box;
+}
+.grid-item image{
+  width: 60rpx;
+  height: 60rpx;
+}
+.grid-item text{
+  margin: 10rpx;
+  font-size: 24rpx;
+}
