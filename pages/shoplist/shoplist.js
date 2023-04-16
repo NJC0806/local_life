@@ -10,9 +10,13 @@ Page({
     shopList:[],
     page:1,
     pageSize:10,
-    total:0
+    total:0,
+    isLoading:false
   },
   getShopInfo(){
+    this.setData({
+      isLoading:true
+    })
     wx.showLoading({
       title: '数据加载中',
     })
@@ -33,6 +37,9 @@ Page({
       },
       complete:()=>{
         wx.hideLoading()
+        this.setData({
+          isLoading:false
+        })
       }
     })
   },
@@ -81,14 +88,19 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+      
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    if(this.data.isLoading) return
+    this.setData({
+      page:this.data.Page + 1 
+    })
+    this.getShopInfo()
+    
   },
 
   /**
